@@ -1,0 +1,17 @@
+name: LavaSell
+main: antbag\LavaSell\Main
+version: 1.0.0
+api: 5.0.0
+depend: BedrockEconomy
+author: antbag
+
+permissions: 
+  lavasell.command.inventory:
+    description: Use the sell inventory command
+    default: true
+  lavasell.command.reload:
+    description: Reload all the sell prices
+    default: op
+  lavasell.command.sell:
+    description: Main command of lavasell
+    default: true
