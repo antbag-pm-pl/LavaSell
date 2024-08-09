@@ -1,5 +1,5 @@
 name: LavaSell
-main: antbag\LavaSell\Main
+main: antbag\LavaSell\LavaSell
 version: 1.0.0
 api: 5.0.0
 depend: BedrockEconomy

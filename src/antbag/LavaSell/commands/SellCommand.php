@@ -2,7 +2,7 @@
 
 namespace antbag\LavaSell\commands;
 
-use antbag\LavaSell\Main;
+use antbag\LavaSell\LavaSell;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
@@ -17,15 +17,20 @@ class SellCommand extends Command
         $this->setPermission("lavasell.command.sell");
     }
 
-    public function execute(CommandSender $sender, string $commandLabel, array $args): bool
+    public function execute(CommandSender $sender, string $commandLabel, array $args): void
     {
+
+        if(!$sender instanceof Player) {
+            return;
+        }
+
         if (!$this->testPermission($sender)) {
-            return false;
+            return;
         }
 
         if (empty($args) || count($args) < 1) {
             $sender->sendMessage(TextFormat::RED . "Usage: /sell <hand|inv>");
-            return false;
+            return;
         }
 
         $subCommand = strtolower($args[0]);
@@ -33,21 +38,21 @@ class SellCommand extends Command
         if ($sender instanceof Player) {
             switch ($subCommand) {
                 case "hand":
-                    Main::getInstance()->sellHand($sender);
+                    LavaSell::getInstance()->sellHand($sender);
                     break;
                 case "inv":
                   if(!$this->testPermission($sender, "lavasell.command.inventory")) {
                     $sender->sendMessage(TextFormat::RED . 'You do not have permission to run this command');
-                    return \false;
+                    return;
                 }
-                    Main::getInstance()->sellInventory($sender);
+                    LavaSell::getInstance()->sellInventory($sender);
                     break;
                 case "reload":
                     if(!$this->testPermission($sender, "lavasell.command.reload")) {
                       $sender->sendMessage(TextFormat::RED . 'You do not have permission to run this command');
-                        return \false;
+                        return;
                     }
-                    Main::getInstance()->loadPrices();
+                    LavaSell::getInstance()->loadPrices();
                     $sender->sendMessage(TextFormat::GREEN . "Sell prices reloaded.");
                     break;
                 default:
@@ -56,13 +61,11 @@ class SellCommand extends Command
             }
         } else {
             if ($subCommand === "reload") {
-                Main::getInstance()->loadPrices();
+                LavaSell::getInstance()->loadPrices();
                 $sender->sendMessage(TextFormat::GREEN . "Sell prices reloaded.");
             } else {
                 $sender->sendMessage(TextFormat::RED . "This command can only be used in-game.");
             }
         }
-
-        return true;
     }
 }
