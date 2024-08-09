@@ -8,6 +8,5 @@ This the sell plugin used by LavaSky but now i have made it public.
 - Bedrock Economy Support
 
 # How to use?
-Download this from poggit and place in your plugin directory. Bedrock Economy is also a requirement.
 
-Download this from poggit and place in your plugin directory. Bedrock Economy is also a requirement. Edit sell.yml to edit sell prices
+Download this from poggit and place in your plugin directory. Edit sell.yml to edit sell prices
