@@ -1,0 +1,19 @@
+{
+    "name": "antbag/lavasell",
+    "description": "A advance Pocketmine-MP plugin to sell stuff",
+    "type": "project",
+    "require": {
+        "pocketmine/pocketmine-mp": "^5.18"
+    },
+    "license": "Apache License 2.0",
+    "autoload": {
+        "psr-4": {
+            "qntbag\\Lavasell\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "antbag-dev"
+        }
+    ]
+}

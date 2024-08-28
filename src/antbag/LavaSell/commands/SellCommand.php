@@ -6,9 +6,11 @@ use antbag\LavaSell\LavaSell;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 use pocketmine\utils\TextFormat;
 
-class SellCommand extends Command
+class SellCommand extends Command implements PluginOwned
 {
 
     public function __construct()
@@ -67,5 +69,10 @@ class SellCommand extends Command
                 $sender->sendMessage(TextFormat::RED . "This command can only be used in-game.");
             }
         }
+    }
+
+    public function getOwningPlugin(): Plugin
+    {
+        return LavaSell::getInstance();
     }
 }

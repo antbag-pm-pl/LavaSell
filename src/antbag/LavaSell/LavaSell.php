@@ -16,6 +16,7 @@ class LavaSell extends PluginBase {
   private static $instance;
   public const PREFIX = '§8[§c§lLavaSell§r§8]§r';
   private array $prices;
+  private Config $messages;
 
   public function onLoad() : void {
     self::$instance = $this;
@@ -31,7 +32,7 @@ class LavaSell extends PluginBase {
       $this->getLogger()->info('You need Bedrock Economy');
     }
     $this->loadPrices();
-    $this->getServer()->getCommandMap()->register('sell', new SellCommand());
+    $this->messages = new Config($this->getDataFolder() . 'messages.yml', Config::YAML);
   }
 
   public function loadPrices(): void
